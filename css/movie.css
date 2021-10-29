@@ -1,139 +1,123 @@
-body{    
-    background-image: url('../../images/background.png');
-    font-family: "Verdana", Tahoma, "sans-serif";
-    font-size: 8pt;
-    margin: 0;
-    padding: 0; 
+body {
+  margin: 0;
+  padding: 0;
+  background: local repeat url("../images/background.png");
+  font-size: 8pt;
+  font-family: Verdana, Tahoma, sans-serif;
 }
 
-#banner{
-    display: block;
-    text-align: center; 
-    background-image: url('../../images/bannerbg.png');
-    height: 50px;
-    width: 100%;
+.banner {
+  display: flex;
+  justify-content: center;
+  background: local repeat-x url("../images/bannerbg.png");
 }
 
-h1{
-    text-align: center;
-    font-size: 24pt;
-    font-weight: bold;
-    font-family: Tahoma, Verdana, "san-serif";
-    text-shadow: 3px 3px #999999;
+.container {
+  position: relative;
+  display: flex;
+  justify-self: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-#content{    
-    width: 800px;
-    margin: 0 auto;
-    border: 4px gray solid;
-    border-radius: 20px;
+.title {
+  font-size: 24pt;
+  text-shadow: 3px 3px #999999;
 }
 
-#content-right{
-    float:right;
-    width: 250px;
-    background-color:#A2B964
+.content,
+.overall {
+  max-width: 800px;
+  display: flex;
 }
 
-#content-right, .overview-img img{
-    border-radius: 0 15px 0 0;
+.overall {
+  display: flex;
+  flex-direction: row-reverse;
+  background-color: transparent;
 }
 
-#content-left{    
-    float: left;
-    width: 550px;
+.general-overview {
+  border-top-right-radius: 16px;
+  background-color: #a2b964;
 }
 
-#banner-left{
-    background-image: url('../../images/rbg.png');
-    height: 83px;
-    width: 100%;
-    font-size: 48pt;
-    color: red;
-    font-weight: bold;
-    border-radius: 15px 0 0 0;
+.general-overview dl {
+  padding: 10px;
 }
 
-#banner-left img{
-    vertical-align: sub;
-    border-radius: 15px 0 0 0;
+.general-overview__image img {
+  border-top-right-radius: 16px;
 }
 
-#container-review {
-    font-size:11px; 
+.review p:first-child {
+  min-height: 20px;
+  background-color: #e8dc9b;
+  font-weight: bold;
+  border: solid 2px grey;
+  border-radius: 10px;
+  padding: 8px;
 }
 
-#section-left{
-    float: left;
+.review img {
+  float: left;
+  margin-right: 5px;
 }
 
-#section-right{
-    float: right;
+.reviews {
+  width: 550px;
+  min-width: 550px;
 }
 
-#section-left, #section-right{
-    margin-left: 1.5%;
-    margin-right: 1.5%;
-    width: 47%;
+.review__banner {
+  display: flex;
+  border-top-left-radius: 16px;
+  padding-left: 12px;
+  height: auto;
+  min-height: 100% !important;
+  background: local repeat-x url("../images/rbg.png");
+  font-size: 48pt;
+  color: red;
+  font-weight: bold;
+  align-items: center;
 }
 
-.reviews{
-    font-size: 8pt;
-    font-weight: bold;
-    background-color: #E8DC9B;
-    border: 2px gray solid;
-    border-radius: 10px;
-    padding: 8px;
-    overflow: hidden;
+.review__column {
+  width: 47%;
+  margin: 2% 1%;
 }
 
-p.review img{
-    float: left;
-    margin-right: 5px;    
+.content {
+  border: solid 4px gray;
+  border-radius: 20px;
+  flex-direction: column;
 }
 
-.container-review{
-    margin-bottom: 20pt;
+.right {
+  align-self: end;
+  float: right;
 }
 
-.cls-italic {
-    font-style: italic;
+.left {
+  align-self: start;
+  float: left;
 }
 
-ul li{
-    list-style: none;
+.pagination {
+  width: 100%;
+  text-align: center;
+  background-color: #a2b964;
+  border-radius: 0 0 16px 16px;
 }
 
-#content-right   dl{
-    padding: 0 10px 0 10pt;
+.footer {
+  opacity: 0.5;
+  right: 0;
+  bottom: 0;
+  position: fixed;
 }
 
-#content-right dl dt{
-    font-weight: bold;
-    padding-top: 10pt;
-}
-
-#content-right dt, #content-right dd{
-    font-size: 8pt;
-    font-family: Arial, "sans-serif";
-}
-
-#content-right dd ul{
-    padding: 0;
-}
-
-#bottom-page{    
-    clear: both;    
-    text-align: center;
-    padding: 5px;
-    background-color:#8369e4; 
-    border-radius: 0 0 15px 15px;
-}
-
-div#validation-tool{
-    float: right;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    opacity: 0.5;
+.a {
+  display: block;
 }
