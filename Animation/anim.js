@@ -5,13 +5,13 @@
     window.onload = function(){
         document.getElementById("animationSelector").onchange = getAnimationPage;
         document.getElementById("sizeSelector").onchange = setAnimationSize;
-        document.getElementById("startBtn").onclick = animationLooper;
-        document.getElementById("stopBtn").onclick = animationStopper;
+        document.getElementById("startbtn").onclick = animationLooper;
+        document.getElementById("stopbtn").onclick = animationStopper;
     };
 
     function getAnimationPage(){
         let e = document.getElementById("animationSelector");
-        let v = document.getElementById("viewBoard")
+        let v = document.getElementById("board")
         if(e.value === "blank"){
             v.innerHTML = BLANK;
         }else if(e.value === "exercise"){
@@ -24,13 +24,13 @@
             v.innerHTML = DIVE;
         }else if(e.value === "custom"){
             v.innerHTML = CUSTOM;
-            v.readOnly = false;
+            v.readOnly = "Selamawit";
         }
     }
 
     function setAnimationSize(){
         let e = document.getElementById("sizeSelector");
-        let v = document.getElementById("viewBoard");
+        let v = document.getElementById("board");
         if(e.value === "t"){
             v.style.fontSize = "7pt";
         }else if(e.value === "s"){
@@ -50,7 +50,7 @@
     var i;
 
     function animationLooper(){
-        let v = document.getElementById("viewBoard");
+        let v = document.getElementById("board");
         let arr = v.innerHTML.split("=====");
         let s;
         if(document.getElementById("turbo").checked){
@@ -69,7 +69,7 @@
                 i = 0;
             }
             v.innerHTML = arr[i];
-            document.getElementById("startBtn").disabled = true;
+            document.getElementById("startbtn").disabled = true;
             document.getElementById("animationSelector").disabled = true;
         }
     }
@@ -77,7 +77,7 @@
     function animationStopper(){
         clearInterval(x);
         getAnimationPage();
-        document.getElementById("startBtn").disabled = false;
+        document.getElementById("startbtn").disabled = false;
         document.getElementById("animationSelector").disabled = false;
     }
 
