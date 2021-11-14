@@ -1,43 +1,61 @@
-var http = require('http');
-var url = require('url');
-var fs = require('fs');
+const http = require("http");
+const url = require("url");
+const calculator = require('./calculator');
 
-var calculatormod = require('./calculatormod');
+const endpoint = "https://cs472-simp-calc.herokuapp.com";
 
-http.createServer(function (req, res) { 
-    var q = url.parse(req.url, true);
-    var qdata=q.query;
-var filename = "." + q.pathname;
-if (q.pathname=="/cal.js")
-{
-    if(qdata.operation=='add'){
-        calculatormod.add(req,res,q.query)
-        calculatormod.displays(req,res,q.query)
-    }
-    else if(qdata.operation=='subtract'){
-        calculatormod.subtract(req,res,q.query)
-        calculatormod.displays(req,res,q.query)
-    }
+http
+  .createServer(function (req, res) {
+    let q = url.parse(req.url, true);
+    
+    const {operator, num1, num2} =  q.query
 
-    else if(qdata.operation=='multiply'){
-        calculatormod.multiply(req,res,q.query)
-        calculatormod.displays(req,res,q.query)
+    const first = parseInt(num1);
+    const second = parseInt(num2);
+    let result;
+
+    if(!isNaN(first) && !isNaN(second)) {
+        result = calculator[operator](first, second);
     }
 
-    else if(qdata.operation=='division'){
-        calculatormod.division(req,res,q.query)
-        calculatormod.displays(req,res,q.query)
-    }
-}
- 
-else
-fs.readFile(filename, function(err, data) { 
-    if (err) {
-        res.writeHead(404, {'Content-Type': 'text/html'});
-        return res.end("404 Not Found");
-    }
-    res.writeHead(200); // Content-Type not included 
-    res.write(data);
+    res.writeHead(200); // Content-Type not included
+    res.write(`
+        <!DOCTYPE html>
+        <html>
+        
+        <head>
+            <title>Simple Calculator</title>
+        </head>
+        
+        <body>            
+            <form action="${endpoint}">
+            ${result ?
+                 `<p>Your answer is: ${result}</p>
+                 <input type="submit" value="Another calculation" />`                                   
+                 :
+            `<div>
+                    <p>Simple calculator</p>    
+                    <p>
+                        <select name="operator" id="operator">
+                            <option value="add">Add</option>
+                            <option value="subtract">Subtract</option>
+                            <option value="multiply">Multiply</option>
+                            <option value="divide">Divide</option>
+                        </select>
+                        
+                    </p>                
+                    Number 1: <input type="text" name="num1" />             
+                    <p>
+                    Number 2: <input type="text" name="num2" /><br />    
+                    </p>        
+                    <input type="submit" value="Submit" />            
+                </div>
+            `}
+            </form>        
+        </body>
+        
+        </html>
+    `);
     return res.end();
-});
-}).listen(8080);
+  })
+  .listen(process.env.PORT || 8080);
