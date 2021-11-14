@@ -1,8 +1,11 @@
 const http = require("http");
 const url = require("url");
 const calculator = require('./calculator');
-
 const endpoint = "https://cs472-simp-calc.herokuapp.com";
+
+
+
+//The result pic is here   https://github.com/johamba/WAP/blob/master/CalculatorNode/calculator.pdf
 
 http
   .createServer(function (req, res) {
